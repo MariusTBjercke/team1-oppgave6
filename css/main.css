@@ -1,0 +1,84 @@
+:root {
+    --bg-color: rgb(61, 61, 61);
+}
+
+@font-face {
+    font-family: Debug;
+    src: url('../fonts/Debug.otf');
+}
+
+body {
+    background-color: var(--bg-color);
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+.wrapper {
+    max-width: 800px;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+.wrapper h1 {
+    font-family: Debug;
+    font-size: 5rem;
+    margin: .1em;
+    color: #d15400;
+    text-shadow: 3px 3px 3px black,
+    -3px -3px 3px black,
+    -3px 3px 3px black,
+    3px -3px 3px black;
+}
+
+.game-screen {
+    width: 600px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    background-color: white;
+    border: 3px solid black;
+}
+
+.player-container {
+    border: 1px solid black;
+    display: grid;
+    justify-content: start;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto;
+    padding: 1em;
+}
+
+.info-container {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+}
+
+.btn-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    align-items: end;
+    justify-content: start;
+    border: 1px solid black;
+}
+
+.healthbar-container {
+}
+
+.health-bar {
+    width: 160px;
+    height: 10px;
+    background-color: green;
+    border: 1px solid black;
+}
