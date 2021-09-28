@@ -24,7 +24,7 @@ function playerAttack(attackIndex) {
 function criticalHit(attackPower, player) {
     let r = Math.random();
     // 15% chance
-    if (r > 0.25) {
+    if (r > 0.85) {
         critical = player;
         return attackPower += attackPower;
     } else {

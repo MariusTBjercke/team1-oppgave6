@@ -48,7 +48,7 @@ let computer = {
 }
 let showBtnOptions = false;
 let usedInventory = false;
-let dialogue = "Kom og smak på nedde!";
+let dialogue = computer.lines[0];
 let playerName = player.stats.name;
 let computerName = computer.stats.name;
 let playerAttackPower;
