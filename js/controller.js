@@ -47,8 +47,6 @@ function useItem(itemIndex) {
     }
     usedInventory = true;
     computerAttack();
-    showBtnOptions = false;
-    show();
 }
 
 function checkWinner() {
