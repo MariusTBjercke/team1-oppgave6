@@ -28,7 +28,6 @@ body {
     position: relative;
     max-width: 800px;
     display: grid;
-    border: 1px solid black;
     justify-content: center;
     justify-items: center;
     align-items: center;
@@ -51,26 +50,23 @@ body {
 }
 
 .player-container {
-    border: 1px solid black;
     display: grid;
     justify-content: start;
     grid-template-rows: auto;
     grid-template-columns: auto auto auto;
     height: 230px;
     padding: 10px;
-    border: 1px solid black;
 }
 
 .player-hud {
-    border: 1px solid black;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto;
-    border: 1px solid black;
     position: relative;
 }
 
 .info-text {
+    border: 1px solid black;
 }
 
 .info-text-container {
@@ -84,12 +80,10 @@ body {
 }
 
 .info-container {
-    border: 1px solid black;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto;
     min-width: 250px;
-    border: 1px solid black;
 }
 
 .top-btn {
@@ -98,7 +92,6 @@ body {
     grid-template-rows: auto;
     align-items: end;
     justify-content: start;
-    border: 1px solid black;
 }
 
 .bck-btn {
@@ -112,7 +105,6 @@ body {
     align-items: end;
     justify-content: start;
     gap: .1em;
-    border: 1px solid black;
 }
 
 .btn-container button {
@@ -142,7 +134,6 @@ body {
 }
 
 .avatar-container {
-    border: 1px solid black;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto;
