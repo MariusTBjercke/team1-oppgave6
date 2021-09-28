@@ -10,7 +10,7 @@ function playerAttack(attackIndex) {
         playerAttackPower = player.optionValues.Attack[attackIndex];
         // 15% chance critical hit
         let rd = Math.random();
-        if (rd > 0.90) {
+        if (rd > 0.85) {
             playerAttackPower += playerAttackPower;
             playerCritical = true;
         }
@@ -29,7 +29,7 @@ function computerAttack() {
         computerAttackPower = computer.attacks.power[randomBossAttackIndex];
         // 15% chance critical hit
         let crd = Math.random();
-        if (crd > 0.90) {
+        if (crd > 0.85) {
             computerAttackPower += computerAttackPower;
             computerCritical = true;
         }
