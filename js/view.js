@@ -24,8 +24,8 @@ function show() {
     const playerAvatarContainer = createElem("div", playerContainer, null, "class", "avatar-container");
     playerAvatar = createElem("div", playerAvatarContainer, null, "class", "player-avatar");
 
-    // Start random computer dialogues on first round (0)
-    (roundCounter === 0) ? doRandomDialogue() : '';
+    // Start random computer dialogues if dialogueStarted is false
+    (dialogueStarted) ? '' : doRandomDialogue();
 }
 
 function statusText(infoText) {
@@ -145,6 +145,7 @@ function doRandomDialogue() {
         computerDialogue.innerHTML = line;
         randomLine = line;
     }, 5000);
+    dialogueStarted = true;
 }
 
 function randomComputerDialogue() {
