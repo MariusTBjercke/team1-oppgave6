@@ -37,12 +37,12 @@ function statusText(infoText) {
             } else {
                 const playerStatus = createElem("div", infoText, `${playerName} used <span>${playerAttack}</span> and inflicted <span>${playerAttackPower}</span> damage`);
                 if (playerCritical) {
-                    const playerCriticalStatus = createElem("div", infoText, `${playerName} inflicted a <span>critical</span> hit!`);
+                    const playerCriticalStatus = createElem("div", infoText, `${playerName} used a <span>critical</span> hit!`);
                 }
             }
             const computerStatus = createElem("div", infoText, `${computerName} used <span>${computerAttack}</span> and inflicted <span>${computerAttackPower}</span> damage`);
             if (computerCritical) {
-                const computerCriticalStatus = createElem("div", infoText, `${computerName} inflicted a <span>critical</span> hit!`);
+                const computerCriticalStatus = createElem("div", infoText, `${computerName} used a <span>critical</span> hit!`);
             }
         }
     }
