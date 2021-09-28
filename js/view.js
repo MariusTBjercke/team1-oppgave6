@@ -140,7 +140,6 @@ doRandomDialogue();
 function doRandomDialogue() {
     setInterval(function() {
         dialogue = randomComputerDialogue();
-        console.log(dialogue);
         show();
     }, 5000);
 }
