@@ -64,5 +64,6 @@ function checkWinner() {
 
     if (winner) {
         alert(winner + " vant!");
+        document.location.href = "index.html";
     }
 }
