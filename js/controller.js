@@ -50,6 +50,10 @@ function computerAttack() {
     }, 1000);
 }
 
+/**
+ * 
+ * @param {number} itemIndex Index of inventory item that corresponds the index of inventory value in player array
+ */
 function useItem(itemIndex) {
     player.stats.health += player.optionValues.Inventory[itemIndex];
     if (player.stats.health > 100) {
