@@ -2,7 +2,6 @@ function playerAttack(attackIndex) {
     critical = false;
     playerAvatar.classList.add("player-hit");
     setTimeout(() => {
-        playerAvatar.classList.remove("player-hit");
         usedInventory = false;
         // Get attack power from optionValues array with the same index as the attack
         computerLastRoundHP = computer.stats.health;
@@ -27,7 +26,6 @@ function criticalHit(attackPower, player) {
     // 15% chance
     if (r > 0.25) {
         critical = player;
-        console.log(attackPower);
         return attackPower += attackPower;
     } else {
         return attackPower;
@@ -38,7 +36,6 @@ function computerAttack() {
     computerCritical = false;
     computerAvatar.classList.add("computer-hit");
     setTimeout(() => {
-        computerAvatar.classList.remove("computer-hit");
         randomBossAttackIndex = Math.floor(Math.random() * computer.attacks.name.length);
         computerAttackPower = computer.attacks.power[randomBossAttackIndex];
         // Critical hit
