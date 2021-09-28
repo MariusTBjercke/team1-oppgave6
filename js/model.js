@@ -18,9 +18,9 @@ let player = {
     },
     optionValues: {
         Attack: [
-            15,
             10,
-            18,
+            6,
+            12,
             3
         ],
         Inventory: [
@@ -36,7 +36,7 @@ let computer = {
     },
     attacks: {
         name: ["Miss Attack", "GET", "Java Saber", "C# Thunder", "Book of Code"],
-        power: [0, 50, 20, 15, 10]
+        power: [0, 15, 16, 15, 10]
     },
     lines: [
         "Nedde vil aldri bli ditt",
