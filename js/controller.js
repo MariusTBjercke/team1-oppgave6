@@ -16,6 +16,12 @@ function playerAttack(attackIndex) {
     }, 1000);
 }
 
+/**
+ * 
+ * @param {number} attackPower The attack power you want to multiply
+ * @param {string} player The player name that will be returned in critical variable
+ * @returns Double attack power if critical chance fulfilled
+ */
 function criticalHit(attackPower, player) {
     let r = Math.random();
     // 15% chance
