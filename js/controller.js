@@ -1,5 +1,5 @@
 function playerAttack(attackIndex) {
-    playerCritical = false;
+    critical = false;
     playerAvatar.classList.add("player-hit");
     setTimeout(() => {
         playerAvatar.classList.remove("player-hit");
@@ -8,16 +8,24 @@ function playerAttack(attackIndex) {
         computerLastRoundHP = computer.stats.health;
         playerAttackIndex = attackIndex;
         playerAttackPower = player.optionValues.Attack[attackIndex];
-        // 15% chance critical hit
-        let rd = Math.random();
-        if (rd > 0.85) {
-            playerAttackPower += playerAttackPower;
-            playerCritical = true;
-        }
+        // Critical hit
+        playerAttackPower = criticalHit(playerAttackPower, playerName);
         computer.stats.health -= playerAttackPower;
         playerLastRoundHP = player.stats.health;
         computerAttack();
     }, 1000);
+}
+
+function criticalHit(attackPower, player) {
+    let r = Math.random();
+    // 15% chance
+    if (r > 0.25) {
+        critical = player;
+        console.log(attackPower);
+        return attackPower += attackPower;
+    } else {
+        return attackPower;
+    }
 }
 
 function computerAttack() {
@@ -27,12 +35,8 @@ function computerAttack() {
         computerAvatar.classList.remove("computer-hit");
         randomBossAttackIndex = Math.floor(Math.random() * computer.attacks.name.length);
         computerAttackPower = computer.attacks.power[randomBossAttackIndex];
-        // 15% chance critical hit
-        let crd = Math.random();
-        if (crd > 0.85) {
-            computerAttackPower += computerAttackPower;
-            computerCritical = true;
-        }
+        // Critical hit
+        computerAttackPower = criticalHit(computerAttackPower, computerName);
         player.stats.health -= computerAttackPower;
         checkWinner();
         showBtnOptions = false;

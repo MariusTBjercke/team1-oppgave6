@@ -35,7 +35,7 @@ let computer = {
         health: 100
     },
     attacks: {
-        name: ["Miss Attack", "GET", "Java Saber", "C# Thunder", "Book of Code"],
+        name: ["Miss", "GET", "Java Saber", "C# Thunder", "Book of Code"],
         power: [0, 15, 16, 15, 10]
     },
     lines: [
@@ -57,7 +57,6 @@ let playerLastRoundHP;
 let computerLastRoundHP;
 let randomBossAttackIndex;
 let playerAttackIndex;
-let playerCritical;
-let computerCritical;
+let critical;
 let computerAvatar;
 let playerAvatar;
