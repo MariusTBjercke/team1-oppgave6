@@ -58,6 +58,7 @@ let computerLastRoundHP;
 let randomBossAttackIndex;
 let playerAttackIndex;
 let computerDialogue;
+// Begin with first line from computer lines array
 let randomLine = computer.lines[0];
 let dialogueStarted;
 let computerAvatar;

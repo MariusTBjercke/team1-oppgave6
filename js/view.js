@@ -36,7 +36,7 @@ function statusText(infoText) {
             let playerAttack = player.options.Attack[playerAttackIndex];
             let computerAttack = computer.attacks.name[randomBossAttackIndex];
             if (usedInventory) {
-                const playerStatus = createElem("div", infoText, `${playerName} restored 30 HP`);
+                const playerStatus = createElem("div", infoText, `${playerName} restored <span>30</span> HP`);
             } else {
                 const playerStatus = createElem("div", infoText, `${playerName} used <span>${playerAttack}</span> and inflicted <span>${playerAttackPower}</span> damage`);
                 if (critical === playerName) {
