@@ -1,53 +1,121 @@
-let showOptions = false;
-
 show();
 function show() {
-
     main.innerHTML = '';
 
     const wrapper = createElem("div", main, null, "class", "wrapper");
-    const gameTitle = createElem("h1", wrapper, "My Game");
     const gameScreen = createElem("div", wrapper, null, "class", "game-screen");
     
+    // Computer/bot screen
     const computerContainer = createElem("div", gameScreen, null, "class", "player-container");
-    playerInformation(computerContainer);
-    
+    const computerHUD = createElem("div", computerContainer, null, "class", "player-hud");
+    playerInformation(computerHUD, computer);
+    const infoTextContainer = createElem("div", computerHUD, null, "class", "info-text-container");
+    const infoTextBox = createElem("div", infoTextContainer, null, "class", "info-text");
+    const infoText = createElem("div", infoTextBox, statusText(infoTextBox));
+    const computerAvatarContainer = createElem("div", computerContainer, null, "class", "avatar-container");
+    computerAvatar = createElem("div", computerAvatarContainer, null, "class", "computer-avatar");
+    const computerDialogue = createElem("div", computerAvatar, dialogue, "class", "computer-dialogue");
+
+    // Player screen
     const playerContainer = createElem("div", gameScreen, null, "class", "player-container");
-    playerInformation(playerContainer);
-    playerBtns(playerContainer);
-
+    const playerHUD = createElem("div", playerContainer, null, "class", "player-hud");
+    playerInformation(playerHUD, player);
+    playerBtns(playerHUD);
+    const playerAvatarContainer = createElem("div", playerContainer, null, "class", "avatar-container");
+    playerAvatar = createElem("div", playerAvatarContainer, null, "class", "player-avatar");
 }
 
-/**
- * 
- * @param {HTMLElement} playerContainer Parent element
- */
-function playerInformation(playerContainer) {
-    const infoContainer = createElem("div", playerContainer, null, "class", "info-container");
-    const healthBarContainer = createElem("div", infoContainer, null, "class", "healthbar-container");
-    const healthPoints = createElem("div", healthBarContainer, "100 HP");
-    const healthBar = createElem("div", healthBarContainer, null, "class", "health-bar");
-}
-
-/**
- * 
- * @param {HTMLElement} playerContainer Parent element
- */
-function playerBtns(playerContainer) {
-    const btnContainer = createElem("div", playerContainer, null, "class", "btn-container");
-    
-    if (showOptions) {
-        player.options.Attack.forEach(element => {
-            const playerOptionBtn = createElem("button", btnContainer, element);
-        });
+function statusText(infoText) {
+    if (winner) {
+        const winnerText = createElem("div", infoText, `${winner} vant!`);
     } else {
-        playerOptions.forEach(element => {
-            const playerOptionBtn = createElem("button", btnContainer, element);
-            playerOptionBtn.onclick = function() {
-                showOptions = true;
-                show();
+        if (playerAttackPower) {
+            let playerAttack = player.options.Attack[playerAttackIndex];
+            let computerAttack = computer.attacks.name[randomBossAttackIndex];
+            if (usedInventory) {
+                const playerStatus = createElem("div", infoText, `${playerName} restored 30 HP`);
+            } else {
+                const playerStatus = createElem("div", infoText, `${playerName} used <span>${playerAttack}</span> and inflicted <span>${playerAttackPower}</span> damage`);
+                if (playerCritical) {
+                    const playerCriticalStatus = createElem("div", infoText, `${playerName} inflicted a <span>critical</span> hit!`);
+                }
             }
-        });
+            const computerStatus = createElem("div", infoText, `${computerName} used <span>${computerAttack}</span> and inflicted <span>${computerAttackPower}</span> damage`);
+            if (computerCritical) {
+                const computerCriticalStatus = createElem("div", infoText, `${computerName} inflicted a <span>critical</span> hit!`);
+            }
+        }
+    }
+}
+
+/**
+ * 
+ * @param {HTMLElement} playerHUD Parent element
+ * @param {Array} character Which character (Ex: computer)
+ */
+function playerInformation(playerHUD, character) {
+    let currentHealth = character.stats.health;
+    let name = character.stats.name;
+    const infoContainer = createElem("div", playerHUD, null, "class", "info-container");
+    const healthBarContainer = createElem("div", infoContainer, null, "class", "healthbar-container");
+    const characterName = createElem("div", healthBarContainer, name, "class", "character-name");
+    const healthPoints = createElem("div", healthBarContainer, currentHealth + " HP");
+    const healthBar = createElem("div", healthBarContainer, null, "class", "health-bar");
+    const healthBarFluid = createElem("div", healthBar, null, "class", "health-bar-fluid");
+
+    // Change HP fluid color when HP is below X
+    currentHealth < 50 ? healthBarFluid.style.background = "yellow" : '';
+    currentHealth < 30 ? healthBarFluid.style.background = "red" : '';
+    
+    // Set health bar fluid % to current HP
+    healthBarFluid.style.width = currentHealth + "%";
+}
+
+/**
+ * 
+ * @param {HTMLElement} playerHUD Parent element
+ */
+function playerBtns(playerHUD) {
+    const topBtn = createElem("div", playerHUD, null, "class", "top-btn");
+
+    // If a button is selected, show "Go back" button
+    const bckBtn = showBtnOptions ? createElem("button", topBtn, "Go back", "class", "bck-btn") : showBtnOptions;
+
+    bckBtn.onclick = () => {
+        showBtnOptions = false;
+        show();
+    };
+
+    const btnContainer = createElem("div", playerHUD, null, "class", "btn-container");
+    
+    switch (showBtnOptions) {
+        case "Attack":
+            player.options.Attack.forEach((attack, attackIndex) => {
+                const playerOptionBtn = createElem("button", btnContainer, attack);
+                playerOptionBtn.onclick = () => {
+                    playerAttack(attackIndex);
+                };
+            });
+            break;
+
+        case "Inventory":
+            player.options.Inventory.forEach((item, itemIndex) => {
+                const playerOptionBtn = createElem("button", btnContainer, item);
+                playerOptionBtn.onclick = () => {
+                    useItem(itemIndex);
+                };
+            });
+            break;
+
+        default:
+            playerOptions.forEach(element => {
+                const playerOptionBtn = createElem("button", btnContainer, element);
+                playerOptionBtn.onclick = () => {
+                    showBtnOptions = element;
+                    show();
+                };
+            });
+            break;
     }
 }
 
@@ -66,4 +134,18 @@ function playerBtns(playerContainer) {
     attrName ? element.setAttribute(attrName, attrValue) : attrName;
     parent.appendChild(element);
     return element;
+}
+
+doRandomDialogue();
+function doRandomDialogue() {
+    setTimeout(function() {
+        dialogue = randomComputerDialogue();
+        show();
+    }, 5000);
+}
+
+function randomComputerDialogue() {
+    let dialogueArray = computer.lines;
+    let random = Math.floor(Math.random() * computer.lines.length);
+    return dialogueArray[random];
 }

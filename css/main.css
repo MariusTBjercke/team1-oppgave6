@@ -1,10 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@900&display=swap");
+
 :root {
-    --bg-color: rgb(61, 61, 61);
+    --bg-color: rgb(121, 121, 121);
+    --tunic-blue: #2cade0;
 }
 
 @font-face {
     font-family: Debug;
     src: url('../fonts/Debug.otf');
+}
+
+html {
+    width: 100%;
 }
 
 body {
@@ -18,8 +25,10 @@ body {
 }
 
 .wrapper {
+    position: relative;
     max-width: 800px;
     display: grid;
+    border: 1px solid black;
     justify-content: center;
     justify-items: center;
     align-items: center;
@@ -28,14 +37,7 @@ body {
 }
 
 .wrapper h1 {
-    font-family: Debug;
-    font-size: 5rem;
     margin: .1em;
-    color: #d15400;
-    text-shadow: 3px 3px 3px black,
-    -3px -3px 3px black,
-    -3px 3px 3px black,
-    3px -3px 3px black;
 }
 
 .game-screen {
@@ -52,33 +54,209 @@ body {
     border: 1px solid black;
     display: grid;
     justify-content: start;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto;
+    grid-template-columns: auto auto auto;
+    height: 230px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.player-hud {
+    border: 1px solid black;
+    display: grid;
     grid-template-columns: auto;
-    padding: 1em;
+    grid-template-rows: auto auto;
+    border: 1px solid black;
+    position: relative;
+}
+
+.info-text {
+}
+
+.info-text-container {
+    display: grid;
+    align-items: end;
+    width: 250px;
+}
+
+.info-text span {
+    font-weight: bold;
 }
 
 .info-container {
     border: 1px solid black;
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto;
+    min-width: 250px;
+    border: 1px solid black;
 }
 
-.btn-container {
+.top-btn {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
     grid-template-rows: auto;
     align-items: end;
     justify-content: start;
     border: 1px solid black;
 }
 
+.bck-btn {
+    /* kommer */
+}
+
+.btn-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto;
+    align-items: end;
+    justify-content: start;
+    gap: .1em;
+    border: 1px solid black;
+}
+
+.btn-container button {
+    background-color: var(--tunic-blue);
+    color: white;
+    text-shadow: 1px 1px 1px black,
+    -1px -1px 1px black,
+    -1px 1px 1px black,
+    1px -1px 1px black;
+    font-size: .8em;
+    padding: .3em .7em .3em .7em;
+}
+
 .healthbar-container {
+    /* kommer */
 }
 
 .health-bar {
     width: 160px;
-    height: 10px;
-    background-color: green;
+    height: 12px;
     border: 1px solid black;
 }
+
+.health-bar-fluid {
+    height: 100%;
+    background: rgb(0, 221, 0);
+}
+
+.avatar-container {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    align-items: end;
+}
+
+.player-avatar {
+    background: url('../img/characters/bjornar/bjornar.png') no-repeat;
+    background-size: contain;
+    width: 210px;
+    height: 220px;
+    transform: rotate(0deg);
+}
+
+.player-hit {
+    animation-name: playerHit;
+    animation-duration: .7s;
+}
+
+@keyframes playerHit {
+    0% {
+        transform:translate(0, 0);
+        transform: rotate(0deg);
+    }
+    20% {
+        transform: translate(0, 20px);
+    }
+    100% {
+        transform: translate(0, -80px);
+    }
+}
+
+.computer-avatar {
+    background: url('../img/characters/terje/terje.png') no-repeat;
+    background-size: contain;
+    position: relative;
+    width: 218px;
+    height: 180px;
+}
+
+.computer-hit {
+    animation-name: computerHit;
+    animation-duration: .7s;
+}
+
+@keyframes computerHit {
+    0% {
+        transform:translate(0, 0);
+        transform: rotate(0deg);
+    }
+    20% {
+        transform: translate(0, -20px)
+    }
+    100% {
+        transform: translate(0, 80px);
+    }
+}
+
+.computer-dialogue {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    border: 1px solid black;
+    border-radius: 1em;
+    padding: 10px;
+}
+
+.character-name {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.stripe-text {
+    position: absolute;
+    font-size: 5em;
+    text-transform: uppercase;
+    font-weight: 900;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, 0%);
+    font-family: "Catamaran", sans-serif;
+    font-style: italic;
+    animation-duration: 1s;
+    animation-name: pulse;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+
+  .stripe-text:after {
+    left: 0;
+    content: "TEAM 1";
+    background: -webkit-repeating-linear-gradient(135deg, #f41fbf, #f41fbf 20px, #ffed28 20px, #ffed28 40px, #b028ff 40px, #b028ff 60px, #39dbc2 60px, #39dbc2 80px);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-stroke-width: 5.5px;
+    -webkit-text-stroke-color: white;
+  }
+
+  .stripe-text:before {
+    z-index: -1;
+    position: absolute;
+    content: "TEAM 1";
+    color: #f41fbf;
+    top: 0px;
+    left: 0px;
+    text-shadow: 5px 0px #f41fbf, 6px 1px #f41fbf, 7px 2px #f41fbf, 8px 3px #f41fbf, 9px 4px #f41fbf, 10px 5px #f41fbf, 11px 6px #f41fbf, 12px 7px #f41fbf, 13px 8px #f41fbf, 14px 9px #f41fbf, 15px 10px #f41fbf;
+  }
+
+  @keyframes pulse {
+      0% {
+          font-size: 4em;
+      }
+      100% {
+          font-size: 5em;
+      }
+  }
