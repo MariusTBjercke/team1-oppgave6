@@ -61,6 +61,7 @@ function useItem(itemIndex) {
 }
 
 function checkWinner() {
+    roundCounter++;
     if (player.stats.health <= 0) {
         winner = computer.stats.name;
         player.stats.health = 0;

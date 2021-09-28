@@ -1,5 +1,4 @@
 let main = document.querySelector("main");
-let winner = false;
 let player = {
     stats: {
         name: "Elizio",
@@ -48,6 +47,8 @@ let computer = {
 }
 let showBtnOptions = false;
 let usedInventory = false;
+let winner = false;
+let roundCounter = 0;
 let dialogue = computer.lines[0];
 let playerName = player.stats.name;
 let computerName = computer.stats.name;
@@ -57,6 +58,7 @@ let playerLastRoundHP;
 let computerLastRoundHP;
 let randomBossAttackIndex;
 let playerAttackIndex;
-let critical;
+let computerDialogue;
+let randomLine = computer.lines[0];
 let computerAvatar;
 let playerAvatar;

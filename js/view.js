@@ -5,7 +5,7 @@ function show() {
     const wrapper = createElem("div", main, null, "class", "wrapper");
     const gameScreen = createElem("div", wrapper, null, "class", "game-screen");
     
-    // Computer/bot screen
+    // Computer screen
     const computerContainer = createElem("div", gameScreen, null, "class", "player-container");
     const computerHUD = createElem("div", computerContainer, null, "class", "player-hud");
     playerInformation(computerHUD, computer);
@@ -14,7 +14,7 @@ function show() {
     const infoText = createElem("div", infoTextBox, statusText(infoTextBox));
     const computerAvatarContainer = createElem("div", computerContainer, null, "class", "avatar-container");
     computerAvatar = createElem("div", computerAvatarContainer, null, "class", "computer-avatar");
-    const computerDialogue = createElem("div", computerAvatar, dialogue, "class", "computer-dialogue");
+    computerDialogue = createElem("div", computerAvatar, randomLine, "class", "computer-dialogue");
 
     // Player screen
     const playerContainer = createElem("div", gameScreen, null, "class", "player-container");
@@ -23,6 +23,9 @@ function show() {
     playerBtns(playerHUD);
     const playerAvatarContainer = createElem("div", playerContainer, null, "class", "avatar-container");
     playerAvatar = createElem("div", playerAvatarContainer, null, "class", "player-avatar");
+
+    // Start random computer dialogues on first round (0)
+    (roundCounter === 0) ? doRandomDialogue() : '';
 }
 
 function statusText(infoText) {
@@ -136,11 +139,11 @@ function playerBtns(playerHUD) {
     return element;
 }
 
-doRandomDialogue();
 function doRandomDialogue() {
     setInterval(function() {
-        dialogue = randomComputerDialogue();
-        show();
+        let line = randomComputerDialogue();
+        computerDialogue.innerHTML = line;
+        randomLine = line;
     }, 5000);
 }
 
